@@ -22,6 +22,7 @@ body {
   color: var(--texte);
 }
 
+/* HEADER */
 header {
   height: 70vh;
   background: linear-gradient(
@@ -38,12 +39,17 @@ header {
 
 
 header h1 {
+<<<<<<< HEAD
   font-size: 4rem;
   font-weight: bold;
   letter-spacing: 3px;
   color: white;
   text-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
   margin-bottom: 10px;
+=======
+  font-family: var(--police-titre);
+  font-size: 2.5rem;
+>>>>>>> 439eff125095a2256ea588c886514c3acaaa18b0
 }
 
 /* NAV */
