@@ -1,3 +1,10 @@
+<?php
+require_once 'config/database.php';
+
+$stmt = $pdo->query("SELECT * FROM vehicule ORDER BY prix_jour ASC");
+$vehicules = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -24,40 +31,25 @@
 
 <div class="cards">
 
-  <div class="card-vehicule">
-    <img src="images/clio.jpg">
-    <h3>Renault Clio</h3>
-    <p>Citadine - 35€/jour</p>
-    <a href="vehicule.php" class="btn">Réserver</a>
-  </div>
+<?php foreach ($vehicules as $v): ?>
 
   <div class="card-vehicule">
-    <img src="images/p308.jpg">
-    <h3>Peugeot 308</h3>
-    <p>Berline - 49€/jour</p>
-    <a href="vehicule.php" class="btn">Réserver</a>
+
+    <img src="images/<?= htmlspecialchars($v['image']) ?>">
+
+    <h3><?= htmlspecialchars($v['modele']) ?></h3>
+
+    <p><?= $v['type'] ?> - <?= $v['nb_places'] ?> places</p>
+
+    <p><?= number_format($v['prix_jour'], 2) ?> € / jour</p>
+
+    <a href="vehicule.php?id=<?= $v['id_vehicule'] ?>">
+      Voir le véhicule
+    </a>
+
   </div>
 
-  <div class="card-vehicule">
-    <img src="images/polo.jpg">
-    <h3>Volkswagen Polo</h3>
-    <p>Citadine - 39€/jour</p>
-    <a href="vehicule.php" class="btn">Réserver</a>
-  </div>
-
-  <div class="card-vehicule">
-    <img src="images/kangoo.jpg">
-    <h3>Renault Kangoo</h3>
-    <p>Utilitaire - 55€/jour</p>
-    <a href="vehicule.php" class="btn">Réserver</a>
-  </div>
-
-  <div class="card-vehicule">
-    <img src="images/tesla.jpg">
-    <h3>Tesla Model 3</h3>
-    <p>Électrique - 79€/jour</p>
-    <a href="vehicule.php" class="btn">Réserver</a>
-  </div>
+<?php endforeach; ?>
 
 </div>
 

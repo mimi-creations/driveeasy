@@ -1,3 +1,19 @@
+<?php
+require_once 'config/database.php';
+
+$id = intval($_GET['id'] ?? 0);
+
+$stmt = $pdo->prepare("SELECT * FROM vehicule WHERE id_vehicule = ?");
+$stmt->execute([$id]);
+
+$v = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$v) {
+    header("Location: vehicules.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,6 +35,22 @@
   <a href="vehicules.php">Nos véhicules</a>
   <a href="reservation.php">Réserver</a>
 </nav>
+
+<h1><?= htmlspecialchars($v['modele']) ?></h1>
+
+<img src="images/<?= htmlspecialchars($v['image']) ?>">
+
+<p>Type : <?= htmlspecialchars($v['type']) ?></p>
+
+<p>Places : <?= $v['nb_places'] ?></p>
+
+<p><?= htmlspecialchars($v['description']) ?></p>
+
+<p><?= number_format($v['prix_jour'], 2) ?> € / jour</p>
+
+<a href="reservation.php?id=<?= $v['id_vehicule'] ?>">
+  Réserver ce véhicule
+</a>
 
 <h2>Détails véhicule</h2>
 
