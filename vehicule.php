@@ -36,9 +36,9 @@ if (!$v) {
 <div class="detail-wrap">
 
   <div class="detail-img-wrap">
-    <img src="images/<?= htmlspecialchars($v['image']) ?>"
-         alt="<?= htmlspecialchars($v['modele']) ?>"
-         class="detail-img">
+      <img src="<?= strpos($v['image'], 'http') === 0 ? htmlspecialchars($v['image']) : 'images/' . htmlspecialchars($v['image']) ?>"
+        alt="<?= htmlspecialchars($v['modele']) ?>"
+        class="detail-img">
   </div>
 
   <div class="detail-info">

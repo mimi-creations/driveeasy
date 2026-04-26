@@ -33,7 +33,7 @@ $vehicules = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="cards">
   <?php foreach ($vehicules as $v): ?>
   <div class="card-vehicule">
-    <img src="images/<?= htmlspecialchars($v['image']) ?>"
+    <img src="<?= strpos($v['image'], 'http') === 0 ? htmlspecialchars($v['image']) : 'images/' . htmlspecialchars($v['image']) ?>"
          alt="<?= htmlspecialchars($v['modele']) ?>">
     <div class="card-body">
       <span class="card-badge"><?= htmlspecialchars($v['type']) ?></span>
