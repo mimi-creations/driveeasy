@@ -1,7 +1,7 @@
 # DriveEasy — Location de véhicules
 
 DriveEasy est un site web de location de véhicules développé dans le cadre d'un projet scolaire.
-Il permet aux utilisateurs de consulter un catalogue de voitures, de voir la fiche détaillée de chaque véhicule et de soumettre une réservation en ligne. Les données sont stockées en base de données MySQL et le site est développé en PHP natif.
+Il permet aux utilisateurs de consulter un catalogue de voitures, de voir la fiche détaillée de chaque véhicule et de soumettre une réservation en ligne. Les données sont stockées en base de données MySQL et le site est développé en PHP.
 
 ---
 
