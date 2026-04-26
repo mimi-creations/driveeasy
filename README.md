@@ -26,7 +26,7 @@ Il permet aux utilisateurs de consulter un catalogue de voitures, de voir la fic
 
 1. **Cloner le dépôt**
    ```bash
-   git clone https://github.com/votre-lien/driveeasy.git
+   git clone https://github.com/mimi-creations/driveeasy.git
    ```
 
 2. **Copier le projet dans XAMPP**
