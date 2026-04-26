@@ -1,3 +1,9 @@
+<?php
+$vehicule = htmlspecialchars($_GET['vehicule'] ?? 'Non précisé');
+$depart   = htmlspecialchars($_GET['depart'] ?? '—');
+$retour   = htmlspecialchars($_GET['retour'] ?? '—');
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,7 +22,7 @@
   <div class="topbar-links">
     <a href="index.php">Accueil</a>
     <a href="vehicules.php">Nos véhicules</a>
-    <a href="reservation.php" class="active">Réserver</a>
+    <a href="reservation.php">Réserver</a>
   </div>
 </nav>
 
@@ -33,23 +39,20 @@
 
   <div class="confirm-card">
     <p class="confirm-card-title">Récapitulatif</p>
+
     <div class="confirm-row">
       <span class="confirm-row-label">Véhicule</span>
-      <span class="confirm-row-val"><?= htmlspecialchars($_GET['vehicule'] ?? 'Non précisé') ?></span>
+      <span class="confirm-row-val"><?= $vehicule ?></span>
     </div>
     <div class="confirm-row">
       <span class="confirm-row-label">Départ</span>
-      <span class="confirm-row-val"><?= htmlspecialchars($_GET['depart'] ?? '—') ?></span>
+      <span class="confirm-row-val"><?= $depart ?></span>
     </div>
     <div class="confirm-row">
       <span class="confirm-row-label">Retour</span>
-      <span class="confirm-row-val"><?= htmlspecialchars($_GET['retour'] ?? '—') ?></span>
+      <span class="confirm-row-val"><?= $retour ?></span>
     </div>
-    <div class="confirm-row">
-      <span class="confirm-row-label">Lieu</span>
-      <span class="confirm-row-val">Paris Centre</span>
-    </div>
-  </div>
+  </div><!-- ✅ fermeture confirm-card -->
 
   <a href="index.php" class="btn">Retour à l'accueil →</a>
 </section>

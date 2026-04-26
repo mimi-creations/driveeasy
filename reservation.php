@@ -17,7 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 VALUES (?, ?, ?, ?, ?, ?)';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$nom, $prenom, $email, $id_vehicule, $date_debut, $date_fin]);
-        header('Location: confirmation.php');
+        $modele = '';
+        foreach ($vehicules as $veh) {
+            if ($veh['id_vehicule'] == $id_vehicule) {
+                $modele = $veh['modele'];
+                break;
+            }
+      }
+      header('Location: confirmation.php?vehicule=' . urlencode($modele) . '&depart=' . urlencode($date_debut) . '&retour=' . urlencode($date_fin));
         exit;
     }
 }
@@ -61,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" name="prenom" id="prenom" placeholder="Marie" required>
       </div>
     </div>
+
     <div class="form-row single">
       <div class="form-field">
         <label for="email">Email</label>
@@ -90,4 +98,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="form-row">
       <div class="form-field">
         <label for="date_debut">Date de départ</label>
-        <input type="date" name="date_debut" id="date_debut" r
+        <input type="date" name="date_debut" id="date_debut" required>
+      </div>
+      <div class="form-field">
+        <label for="date_fin">Date de retour</label>
+        <input type="date" name="date_fin" id="date_fin" required>
+      </div>
+    </div>
+
+    <!-- ✅ BOUTON À L'INTÉRIEUR DU FORM -->
+    <button type="submit" class="btn-resa">
+      Confirmer la réservation →
+    </button>
+
+  </form>
+</div>
+
+<footer>
+  <p>DriveEasy - Location de véhicules</p>
+  <p>Paris — 01 23 45 67 89</p>
+  <p>&copy; 2026 DriveEasy</p>
+</footer>
+
+</body>
+</html>
