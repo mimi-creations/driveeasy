@@ -120,5 +120,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <p>&copy; 2026 DriveEasy</p>
 </footer>
 
+<script>
+  const debut = document.getElementById('date_debut');
+  const fin   = document.getElementById('date_fin');
+
+  // Date minimum = aujourd'hui
+  const today = new Date().toISOString().split('T')[0];
+  debut.min = today;
+
+  // Date de retour minimum = lendemain du départ
+  debut.addEventListener('change', function () {
+    fin.min = this.value;
+    if (fin.value && fin.value <= this.value) {
+      fin.value = '';
+    }
+  });
+</script>
+
 </body>
 </html>
