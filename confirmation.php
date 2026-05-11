@@ -2,7 +2,7 @@
 $vehicule = htmlspecialchars($_GET['vehicule'] ?? 'Non précisé');
 $depart   = htmlspecialchars($_GET['depart'] ?? '—');
 $retour   = htmlspecialchars($_GET['retour'] ?? '—');
-?>
+?> //Ce bloc PHP sert à récupérer et sécuriser les informations passées dans l'URL après une réservation.
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -52,7 +52,7 @@ $retour   = htmlspecialchars($_GET['retour'] ?? '—');
       <span class="confirm-row-label">Retour</span>
       <span class="confirm-row-val"><?= $retour ?></span>
     </div>
-  </div><!-- ✅ fermeture confirm-card -->
+  </div><!-- fermeture confirm-card -->
 
   <a href="index.php" class="btn">Retour à l'accueil →</a>
 </section>

@@ -58,7 +58,7 @@ if (!$v) {
       <div class="spec-item">
         <span class="spec-label">Prix</span>
         <span class="spec-val"><?= number_format($v['prix_jour'], 2) ?> €/jour</span>
-      </div>
+      </div> //<span> est plus approprié car on stylise juste un morceau de texte à l'intérieur d'une case — pas besoin d'un bloc entier.
     </div>
 
     <div class="detail-prix">

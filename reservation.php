@@ -1,18 +1,18 @@
 <?php
 require_once 'config/database.php';
-$stmt = $pdo->query('SELECT id_vehicule, modele, prix_jour FROM vehicule');
-$vehicules = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$preselectId = intval($_GET['id'] ?? 0);
+$stmt = $pdo->query('SELECT id_vehicule, modele, prix_jour FROM vehicule'); ////On exécute une requête SQL pour récupérer la liste des véhicules. Elle servira à remplir le menu déroulant du formulaire.
+$vehicules = $stmt->fetchAll(PDO::FETCH_ASSOC); //retourne un tableau PHP : chaque ligne est un tableau avec les clés id_vehicule, modele, prix_jour.
+$preselectId = intval($_GET['id'] ?? 0); //si l'utilisateur arrive depuis la fiche d'un véhicule (ex: reservation.php?id=3), ce véhicule sera pré-sélectionné dans le menu. intval() force la conversion en nombre entier.
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { //verifier formulaire a ete envoyer
     $nom         = trim($_POST['nom']);
     $prenom      = trim($_POST['prenom']);
     $email       = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $id_vehicule = intval($_POST['id_vehicule']);
     $date_debut  = $_POST['date_debut'];
-    $date_fin    = $_POST['date_fin'];
+    $date_fin    = $_POST['date_fin']; //nettoyer les données recues
 
-    if ($nom && $prenom && $email && $id_vehicule && $date_debut && $date_fin) {
+    if ($nom && $prenom && $email && $id_vehicule && $date_debut && $date_fin) { //vérifier que rien n'est vide
         $sql = 'INSERT INTO reservation (nom, prenom, email, id_vehicule, date_debut, date_fin)
                 VALUES (?, ?, ?, ?, ?, ?)';
         $stmt = $pdo->prepare($sql);
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($vehicules as $veh) {
             if ($veh['id_vehicule'] == $id_vehicule) {
                 $modele = $veh['modele'];
-                break;
+                break; //retrouver le nom du vehicule réservé
             }
       }
       header('Location: confirmation.php?vehicule=' . urlencode($modele) . '&depart=' . urlencode($date_debut) . '&retour=' . urlencode($date_fin));
@@ -122,11 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
   const debut = document.getElementById('date_debut');
-  const fin   = document.getElementById('date_fin');
+  const fin   = document.getElementById('date_fin'); //récuperer les champs de date
 
   // Date minimum = aujourd'hui
   const today = new Date().toISOString().split('T')[0];
-  debut.min = today;
+  debut.min = today; //bloquer les dates passer
 
   // Date de retour minimum = lendemain du départ
   debut.addEventListener('change', function () {
@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (fin.value && fin.value <= this.value) {
       fin.value = '';
     }
-  });
+  }); //Ce script empêche deux erreurs : choisir une date dans le passé, et choisir une date de retour avant la date de départ. Tout ça se passe directement dans le navigateur, sans recharger la page.
 </script>
 
 </body>

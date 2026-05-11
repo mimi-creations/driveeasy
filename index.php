@@ -10,7 +10,10 @@
   <title>DriveEasy — Location de véhicules à Paris</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body>  //  charset UTF-8 : gère les caractères spéciaux (é, à, ç…).
+        // viewport : rend le site responsive (adapté mobile/tablette).
+        // Google Fonts : charge la police Josefin Sans.
+        // style.css : notre feuille de style personnalisée.
 
 <nav class="topbar">
   <a href="index.php" class="topbar-logo">DriveEasy</a>
